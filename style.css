@@ -11,7 +11,8 @@
   --primary: #1F4D2B;
   --accent: #E08A2B;
 
-  width: 1440px;
+  width: 100%;
+  max-width: 1600px;
   background: var(--paper);
   color: var(--ink);
   font-family: 'Newsreader', 'Cormorant Garamond', Georgia, serif;
@@ -942,3 +943,245 @@
 .a-wa-fab:active {
   transform: scale(0.98);
 }
+
+/* ============================================================
+   RESPONSIVE — fluid scaling + breakpoints
+   Breakpoints: 1024 (tablet), 768 (small tablet), 480 (phone)
+   ============================================================ */
+
+/* ---------- Hamburger toggle (hidden on desktop) ---------- */
+.a-nav__toggle {
+  display: none;
+  background: transparent;
+  border: 0;
+  padding: 8px;
+  cursor: pointer;
+  color: var(--primary);
+  justify-self: end;
+}
+.a-nav__toggle svg { display: block; }
+.a-nav__toggle .a-nav__toggle-close { display: none; }
+
+/* ---------- TABLET: 1024px and below ---------- */
+@media (max-width: 1024px) {
+  .a-nav { padding: 20px 32px; grid-template-columns: 1fr auto; }
+  .a-nav__cta { display: none; }
+  .a-nav__links { gap: 24px; }
+
+  .a-hero { padding: 56px 32px 0; }
+  .a-hero__title { font-size: 88px; margin-bottom: 56px; }
+  .a-hero__lede { font-size: 20px; margin: -32px 0 40px; }
+  .a-hero__photo { margin: 0 -32px; height: 440px; }
+  .a-hero__photoCap { left: 32px; }
+
+  .a-meaning { padding: 80px 32px; }
+  .a-meaning__body { font-size: 34px; }
+
+  .a-secHeader { gap: 32px; padding-bottom: 56px; }
+  .a-secTitle { font-size: 64px; }
+  .a-secLede { font-size: 19px; }
+
+  .a-sectors, .a-howwework, .a-portfolio, .a-looking, .a-about, .a-contact { padding: 80px 32px; }
+
+  .a-paths { grid-template-columns: 1fr; }
+  .a-path { min-height: auto; padding: 32px 28px; }
+
+  .a-pStrip__item { height: 240px; }
+  .a-pTable__co { font-size: 19px; }
+  .a-pTable tbody td { font-size: 15px; padding: 18px 6px; }
+  .a-pCount__n { font-size: 56px; }
+
+  .a-looking__title { font-size: 64px; }
+  .a-looking__lede { font-size: 20px; }
+
+  .a-about__split { gap: 40px; }
+  .a-about__p { font-size: 22px; }
+  .a-about__creds { gap: 16px; }
+
+  .a-interstitial { height: 440px; }
+  .a-interstitial__cap { left: 32px; }
+  .a-interstitial--closing { height: 360px; }
+
+  .a-contact__inner { gap: 56px; }
+  .a-contact__title { font-size: 60px; }
+  .a-form { padding: 32px; }
+
+  .a-footer { padding: 48px 32px; }
+}
+
+/* ---------- SMALL TABLET / LARGE PHONE: 768px and below ---------- */
+@media (max-width: 768px) {
+  .a-nav {
+    padding: 16px 20px;
+    grid-template-columns: auto auto;
+  }
+  .a-nav__word { font-size: 13px; }
+  .a-nav__mark { width: 24px; height: 24px; }
+
+  /* Show hamburger, hide inline links */
+  .a-nav__toggle { display: inline-flex; align-items: center; }
+  .a-nav { position: sticky; }
+  .a-nav__links {
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    width: 100%;
+    background: var(--paper);
+    flex-direction: column;
+    gap: 0;
+    padding: 16px 20px 24px;
+    border-bottom: 1px solid var(--rule);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+    transform: translateY(-12px);
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.25s ease;
+    pointer-events: none;
+    visibility: hidden;
+  }
+  .a-nav__links a {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 13px;
+  }
+  .a-nav__links a:last-child { border-bottom: 0; }
+  .a-nav.is-open .a-nav__links {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+  .a-nav.is-open .a-nav__toggle-open { display: none; }
+  .a-nav.is-open .a-nav__toggle-close { display: block; }
+
+  .a-hero { padding: 40px 20px 0; }
+  .a-hero__eyebrow { font-size: 11px; margin-bottom: 32px; }
+  .a-hero__title { font-size: 52px; line-height: 0.98; margin-bottom: 32px; letter-spacing: -0.025em; }
+  .a-hero__lede { font-size: 17px; margin: -16px 0 32px; }
+  .a-hero__meta {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 24px 0;
+    margin-bottom: 40px;
+  }
+  .a-hero__metaVal { font-size: 22px; }
+  .a-hero__photo { margin: 0 -20px; height: 320px; }
+  .a-hero__photoCap { left: 20px; bottom: 12px; font-size: 10px; }
+
+  .a-meaning { padding: 64px 20px; }
+  .a-meaning__body { font-size: 24px; line-height: 1.3; }
+  .a-meaning__lbl { margin-bottom: 24px; }
+
+  /* Section headers stack */
+  .a-secHeader {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding-bottom: 40px;
+  }
+  .a-secLede {
+    grid-column: 1;
+    margin-top: 8px;
+    font-size: 17px;
+    max-width: none;
+  }
+  .a-secTitle { font-size: 44px; }
+
+  .a-sectors, .a-howwework, .a-portfolio, .a-looking, .a-about, .a-contact { padding: 64px 20px; }
+
+  /* Approach: 4 boxes stack */
+  .a-sectors__list { grid-template-columns: 1fr; }
+  .a-sector,
+  .a-sector:nth-child(odd),
+  .a-sector:nth-child(even) {
+    padding: 32px 0;
+    border-right: 0;
+  }
+  .a-sector__t { font-size: 28px; }
+  .a-sector__d { font-size: 16px; max-width: none; }
+  .a-sector { grid-template-columns: 40px 1fr; gap: 12px; }
+
+  .a-path__t { font-size: 28px; }
+  .a-path__d { font-size: 16px; }
+
+  /* Portfolio: photo strip stacks, table → cards */
+  .a-pStrip {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .a-pStrip__item { height: 220px; }
+
+  .a-pTable thead { display: none; }
+  .a-pTable, .a-pTable tbody, .a-pTable tr, .a-pTable td { display: block; width: 100%; }
+  .a-pTable tr {
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    margin-bottom: 12px;
+    padding: 20px;
+  }
+  .a-pTable tbody td {
+    border: 0;
+    padding: 4px 0;
+  }
+  .a-pTable tbody td:first-child { padding-bottom: 12px; }
+  .a-pTable__co { font-size: 22px; }
+  .a-pTable tbody td:nth-child(2)::before { content: "Sector — "; color: var(--ink-mute); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; }
+  .a-pTable tbody td:nth-child(3)::before { content: "Geography — "; color: var(--ink-mute); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; }
+  .a-pTable tbody td:nth-child(4) { padding-top: 8px; font-size: 15px; }
+  .a-pTable tbody tr:hover td { background: transparent; }
+
+  .a-pCount {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding-top: 32px;
+    margin-top: 40px;
+  }
+  .a-pCount__n { font-size: 56px; }
+
+  .a-looking__title { font-size: 44px; }
+  .a-looking__lede { font-size: 18px; margin-bottom: 40px; }
+  .a-looking__grid { grid-template-columns: 1fr; }
+  .a-criterion {
+    padding: 28px 24px;
+    grid-template-columns: 32px 1fr;
+  }
+  .a-criterion__t { font-size: 22px; }
+  .a-criterion__d { font-size: 15px; }
+  .a-looking__note { font-size: 17px; padding-left: 16px; }
+
+  .a-about__split { grid-template-columns: 1fr; gap: 32px; }
+  .a-about__p { font-size: 19px; }
+  .a-about__creds { grid-template-columns: 1fr; gap: 12px; }
+
+  .a-interstitial { height: 320px; }
+  .a-interstitial__cap { left: 16px; right: 16px; bottom: 12px; font-size: 10px; max-width: none; }
+  .a-interstitial--closing { height: 280px; }
+
+  .a-contact__inner { grid-template-columns: 1fr; gap: 40px; }
+  .a-contact__title { font-size: 42px; }
+  .a-contact__lede { font-size: 17px; margin-bottom: 32px; }
+  .a-contact__channelVal { font-size: 18px; }
+  .a-form { padding: 24px; }
+  .a-form__hdr { padding-bottom: 16px; margin-bottom: 16px; }
+  .a-field input, .a-field textarea { font-size: 16px; }
+
+  .a-footer { padding: 40px 20px; }
+  .a-footer__row { flex-wrap: wrap; gap: 12px; padding-bottom: 24px; }
+  .a-footer__sub { margin-left: 0; flex-basis: 100%; font-size: 15px; }
+  .a-footer__legal { gap: 16px; font-size: 10px; }
+
+  /* Floating WhatsApp button: a touch smaller on phones */
+  .a-wa-fab,
+  .a-wa-fab img { width: 54px; height: 54px; }
+  .a-wa-fab { right: 16px; bottom: 16px; }
+}
+
+/* ---------- SMALL PHONE: 480px and below ---------- */
+@media (max-width: 480px) {
+  .a-hero__title { font-size: 40px; }
+  .a-meaning__body { font-size: 20px; }
+  .a-secTitle { font-size: 36px; }
+  .a-looking__title { font-size: 36px; }
+  .a-contact__title { font-size: 34px; }
+  .a-pCount__n { font-size: 48px; }
+}
+
